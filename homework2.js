@@ -10,15 +10,19 @@ Output arr: ["even index","Baseball","even index","Goku","even index","Rodger"]
 const testArr = ["Max","Baseball","Reboot","Goku","Trucks","Rodger"]
 
 function replaceEvens(arr){
-    //I want to loop through first to find the each name in the string
-    for (let i = 0; i < testArr.length; i++) 
-    process(testArr[i]);
-    //splice the string 
-  console.log('.splice() method')
-  console.log(testArr);
-  let newSentence = testArr.splice(0, 2, 'even index');
-  console.log(testArr)
+    //I want to loop through first to find the each name in the string\
+    for (let i = 0; i < arr.lentgh; i++){
+        if (i % 2 ==0){
+            arr.splice(i,1, 'even index');
+        }
+    }
+   
+    return arr 
+
   }
+
+console.log(replaceEvens(testArr));
+
 
 
 //============ Exercise #2 ============//
@@ -42,4 +46,30 @@ const person = {
 }
 
 // person.pizza +"," +person.tacos + "," + person.burgers + "," + person.ice_cream + "." + person.shakes;
-console.log(Object.values(person));
+// console.log(Object.values(person));
+
+let parsePersonObject = (person) => {
+    // Loop through the keys of person
+    for (let i=0; i < Object.keys(person).length; i++){
+        // If value of object at key[i] is an array
+        if (Array.isArray(Object.values(person)[i])){
+            // Loop through the array
+            for (let j=0; j < Object.values(person)[i].length; j++){
+                // Check if value at array[j] is an oject
+                if (typeof(Object.values(person)[i][j])==='object'){
+                    // Loop through the object via .keys()
+                    for (let k=0; k < Object.keys(Object.values(person)[i][j]).length; k++){
+                        // log the value at index k of person[i][j]
+                        console.log(Object.values(Object.values(person)[i][j])[k]);
+                    }
+                } else {
+                    console.log(Object.values(person)[i][j]);
+                }
+            }
+        } else {
+            console.log(Object.values(person)[i]);
+        }
+    }
+}
+
+parsePersonObject(person);
